@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import AddToCartButton from './components/AddToCartButton';
 
-const [cartItems, setCartItems] = useState([]);
+
 
 const onAddToCart = (product) => {
+  const [cartItems, setCartItems] = useState([]);
   setCartItems((prevItems) => {
     const existingItem = prevItems.find((item) => item.id === product.id);
 
@@ -33,6 +34,7 @@ const onAddToCart = (product) => {
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
