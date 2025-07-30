@@ -45,12 +45,11 @@ function App() {
               <p>${product.price}</p>
               <AddToCartButton onAdd={() => onAddToCart(product)} />
             </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+     
+    ))}
+  </div>
+)}
+
 {cartItems.length > 0 && (
   <div className="cart">
     <h2>Shopping Cart</h2>
@@ -59,11 +58,13 @@ function App() {
         <p>
           {item.title} x {item.quantity}
         </p>
-      </div>
-    ))}
-  </div>
-)}
-</div>
+        </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 
 export default App;
