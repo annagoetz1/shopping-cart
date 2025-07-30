@@ -3,22 +3,7 @@ import AddToCartButton from './components/AddToCartButton';
 
 
 
-const onAddToCart = (product) => {
-  const [cartItems, setCartItems] = useState([]);
-  setCartItems((prevItems) => {
-    const existingItem = prevItems.find((item) => item.id === product.id);
 
-    if (existingItem) {
-      // If the product is already in the cart, increase quantity
-      return prevItems.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-    } else {
-      // If it's a new product, add it with quantity 1
-      return [...prevItems, { ...product, quantity: 1 }];
-    }
-  });
-};
 
 {cartItems.length > 0 && (
   <div>
@@ -42,6 +27,22 @@ function App() {
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
+
+  const onAddToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        return prevItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevItems, { ...product, quantity: 1 }];
+      }
+    });
+  };
 
   return (
     <div>
