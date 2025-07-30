@@ -1,4 +1,23 @@
 import { useEffect, useState } from "react";
+import AddToCartButton from './components/AddToCartButton';
+
+const [cartItems, setCartItems] = useState([]);
+
+const onAddToCart = (product) => {
+  setCartItems((prevItems) => {
+    const existingItem = prevItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      // If the product is already in the cart, increase quantity
+      return prevItems.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    } else {
+      // If it's a new product, add it with quantity 1
+      return [...prevItems, { ...product, quantity: 1 }];
+    }
+  });
+};
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,6 +41,7 @@ function App() {
               <h2>{product.title}</h2>
               <img src={product.image} alt={product.title} width={100} />
               <p>${product.price}</p>
+              <AddToCartButton onAdd={() => onAddToCart(product)} />
             </div>
           ))}
         </div>
