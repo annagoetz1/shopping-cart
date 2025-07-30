@@ -4,19 +4,6 @@ import AddToCartButton from './components/AddToCartButton';
 
 
 
-
-{cartItems.length > 0 && (
-  <div>
-    <h2>Shopping Cart</h2>
-    {cartItems.map((item) => (
-      <div key={item.id}>
-        <p>{item.title} x {item.quantity}</p>
-      </div>
-    ))}
-  </div>
-)}
-
-
 function App() {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -64,5 +51,19 @@ function App() {
     </div>
   );
 }
+{cartItems.length > 0 && (
+  <div className="cart">
+    <h2>Shopping Cart</h2>
+    {cartItems.map((item) => (
+      <div key={item.id}>
+        <p>
+          {item.title} x {item.quantity}
+        </p>
+      </div>
+    ))}
+  </div>
+)}
+</div>
+
 
 export default App;
