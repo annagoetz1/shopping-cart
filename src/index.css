@@ -5,3 +5,13 @@
   justify-content: center;
   padding: 1rem;
 }
+
+.product-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 200px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  background-color: #fff;
+}
