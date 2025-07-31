@@ -51,20 +51,13 @@ function App() {
 )}
 
 {cartItems.length > 0 && (
-  <div className="cart">
+  <div className="cart" style={{ border: "2px solid red", padding: "1rem", marginTop: "2rem" }}>
     <h2>Shopping Cart</h2>
-    {cartItems.map((item) => (
-      <div key={item.id}>
-        <p>
-          {item.title} x {item.quantity}
-        </p>
-        </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <p>Items in cart: {cartItems.reduce((total, item) => total + item.quantity, 0)}</p>
+  </div>
+)}
+</div>
   );
 }
-
 
 export default App;
