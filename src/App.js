@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AddToCartButton from './components/AddToCartButton';
+import NavBar from "./nav.js";
 
 
 
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <div>
+      <NavBar/>
       <h1>Fake Store Products</h1>
       {products.length === 0 ? (
         <p>Loading...</p>
