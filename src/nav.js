@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   return (
@@ -12,20 +13,18 @@ function NavBar() {
         color: "white",
       }}
     >
-      {/* Logo or Brand */}
+    
       <div style={{ fontWeight: "bold", fontSize: "1.5rem" }}>My Shop</div>
 
-      {/* Nav Links */}
+    
       <div style={{ display: "flex", gap: "1.5rem" }}>
-        <a href="#home" style={{ color: "white", textDecoration: "none" }}>
-          Home
-        </a>
-        <a href="#products" style={{ color: "white", textDecoration: "none" }}>
+        
+        <Link to= "/" style={{ color: "white", textDecoration: "none" }}>
           Products
-        </a>
-        <a href="#cart" style={{ color: "white", textDecoration: "none" }}>
+        </Link>
+        <Link to= "/cart" style={{ color: "white", textDecoration: "none" }}>
           Cart
-        </a>
+        </Link>
       </div>
     </nav>
   );
