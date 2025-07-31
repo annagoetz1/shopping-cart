@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import AddToCartButton from './components/AddToCartButton';
-
-
-
-
+import { CartContext } from './CartContext';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -33,32 +30,42 @@ function App() {
   };
 
   return (
-    <div>
-      
-      <h1>Fake Store Products</h1>
-      {products.length === 0 ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="products">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              <h2>{product.title}</h2>
-              <img src={product.image} alt={product.title} width={100} />
-              <p>${product.price}</p>
-              <AddToCartButton onAdd={() => onAddToCart(product)} />
-            </div>
-     
-    ))}
-  </div>
-)}
+    <CartContext.Provider value={{ cartItems, onAddToCart }}>
+      <div>
+        <h1>Fake Store Products</h1>
+        {products.length === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="products">
+            {products.map((product) => (
+              <div key={product.id} className="product-card">
+                <h2>{product.title}</h2>
+                <img src={product.image} alt={product.title} width={100} />
+                <p>${product.price}</p>
+                <AddToCartButton onAdd={() => onAddToCart(product)} />
+              </div>
+            ))}
+          </div>
+        )}
 
-{cartItems.length > 0 && (
-  <div className="cart" style={{ border: "2px solid red", padding: "1rem", marginTop: "2rem" }}>
-    <h2>Shopping Cart</h2>
-    <p>Items in cart: {cartItems.reduce((total, item) => total + item.quantity, 0)}</p>
-  </div>
-)}
-</div>
+        {cartItems.length > 0 && (
+          <div
+            className="cart"
+            style={{
+              border: "2px solid red",
+              padding: "1rem",
+              marginTop: "2rem",
+            }}
+          >
+            <h2>Shopping Cart</h2>
+            <p>
+              Items in cart:{" "}
+              {cartItems.reduce((total, item) => total + item.quantity, 0)}
+            </p>
+          </div>
+        )}
+      </div>
+    </CartContext.Provider>
   );
 }
 
