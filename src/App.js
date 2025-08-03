@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import AddToCartButton from './components/AddToCartButton';
-import { CartContext } from './CartContext';
+import { CartContext } from './CartContext.js';
+import { useCart } from "./CartContext";
+
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState([]);
+ 
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -13,21 +15,7 @@ function App() {
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
-  const onAddToCart = (product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
-
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        return [...prevItems, { ...product, quantity: 1 }];
-      }
-    });
-  };
+  const { cartItems, onAddToCart } = useCart();
 
   return (
     <CartContext.Provider value={{ cartItems, onAddToCart }}>
